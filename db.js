@@ -2,10 +2,10 @@
 const mysql = require('mysql2/promise'); // Use promise wrapper
 
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'kiswa_database',
+  host: 'alkiswatourism.com',
+  user: 'u419887600_alkiswa',
+  password: 'Alkiswa@122',
+  database: 'u419887600_alkiswa',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
