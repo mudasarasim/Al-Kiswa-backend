@@ -1,10 +1,10 @@
 const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
-  host: 'alkiswatourism.com',
-  user: 'u419887600_alkiswa_db',
-  password: 'Alkiswa@122',
-  database: 'u419887600_alkiswa_db',
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'kiswa_database',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
