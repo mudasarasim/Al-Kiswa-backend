@@ -1,10 +1,11 @@
 const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'kiswa_database',
+  host: 'gillbaba.com',
+  user: 'u167227426_alkiswa_tours',
+  password: 'Alkiswa@123',
+  database: 'u167227426_alkiswa_tours',
+  port: 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0

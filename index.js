@@ -1,26 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql2');
 require('dotenv').config();
+
+const db = require('./Config/db'); // ✅ Import connection pool from your db.js
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-
-// ✅ MySQL DB connection using Railway environment variables
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
-
-db.connect((err) => {
-  if (err) {
-    console.error('❌ MySQL connection failed:', err.message);
-  } else {
-    console.log('✅ Connected to MySQL');
-  }
-});
 
 // ✅ Middleware
 const corsOptions = {
