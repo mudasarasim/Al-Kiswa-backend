@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../Config/db');
 
 exports.createBooking = (req, res) => {
   const { user_id, tour_id, quantity, status } = req.body;

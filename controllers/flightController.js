@@ -1,4 +1,4 @@
-const amadeus = require('../Config/amadeus');
+const amadeus = require('../Config/db');
 
 // City-to-IATA Code Map
 const cityToIATACode = {

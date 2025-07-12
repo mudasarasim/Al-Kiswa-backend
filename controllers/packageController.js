@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../Config/db');
 
 exports.createPackage = async (req, res) => {
   const { title, description, price, image, location, days, nights } = req.body;

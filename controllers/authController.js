@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const db = require('../db');
+const db = require('../Config/db');
 // Optional: remove unused imports
 // const { createUser, findUserByEmail } = require('../models/userModel');
 

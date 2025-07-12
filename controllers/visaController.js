@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../Config/db');
 
 // Get all visas
 exports.getAllVisas = async (req, res) => {
