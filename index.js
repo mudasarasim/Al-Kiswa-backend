@@ -2,21 +2,34 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const db = require('./Config/db'); // ✅ Import connection pool from your db.js
-
+const db = require('./Config/db');
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// ✅ Middleware
+// ✅ Configure CORS properly
+const allowedOrigins = [
+  process.env.CLIENT_URL || 'http://localhost:3000',
+];
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
-  credentials: true,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed from this origin'));
+    }
+  },
+  credentials: true, // Allow cookies, auth headers, etc.
 };
+
+// ✅ Middleware
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Enable preflight requests for all routes
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-// ✅ Health check route
+// ✅ Health check
 app.get('/', (req, res) => {
   res.send('✅ Backend is running on Railway');
 });
@@ -32,7 +45,7 @@ const visaTravelersRoute = require('./routes/visaTravelers')(db);
 const contactRoutes = require('./routes/contactRoutes')(db);
 const umrahRoutes = require('./routes/umrahRoutes');
 
-// Admin Routes
+// ✅ Admin Routes
 const adminAuthRoutes = require('./routes/admin/adminAuth');
 const adminProtectedRoute = require('./routes/admin/protected');
 const adminCheckSessionRoute = require('./routes/admin/checkSession');
@@ -41,7 +54,7 @@ const adminMessageRoutes = require('./routes/admin/messages')(db);
 const adminVisaRoutes = require('./routes/admin/visaApplications')(db);
 const umrahAdminRoutes = require('./routes/admin/umrahAdmin');
 
-// ✅ Apply API routes
+// ✅ Apply Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/packages', packageRoutes);
 app.use('/api/bookings', bookingRoutes);
